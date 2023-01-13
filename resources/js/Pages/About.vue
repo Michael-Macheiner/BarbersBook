@@ -1,5 +1,5 @@
 <script setup>
-
+import { Link } from '@inertiajs/inertia-vue3'
 </script>
 
 <template>
@@ -12,6 +12,11 @@
 
     <h1>Vue</h1>
     <p><a href="https://vuejs.org/">Vue</a> is a progressive JavaScript frontend framework designed to be flexible. The core Vue library focuses on the view layer only, and additional packages are needed for features like routing and state management.</p>
+
+    <div class="links">
+      <Link href="/">Home</Link>
+      <Link href="/about">About</Link>
+    </div>
   </div>
 </template>
 
@@ -23,4 +28,14 @@
   flex-direction: column;
   padding: 20px;
 }
+
+.links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding: 20px;
+  gap: 10px;
+}
+
 </style>

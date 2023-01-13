@@ -23,3 +23,4 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/', 'WelcomeController.index')
 Route.get('/about', 'WelcomeController.about')
 
+Route.get('/home', 'WelcomeController.index').as('home')
