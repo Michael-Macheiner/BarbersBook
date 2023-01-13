@@ -1,18 +1,14 @@
 <script setup>
 import { Link } from '@inertiajs/inertia-vue3'
+import { ref } from 'vue';
 
-import {ref} from 'vue';
 let count = ref(0);
 const props = defineProps({
   test: {
-    type: String,
-    required: true
-  },
-  attempt: {
     type: Number,
     required: true
   }
-})
+});
 </script>
 
 <template>
