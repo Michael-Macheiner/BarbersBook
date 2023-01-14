@@ -17,10 +17,18 @@
 | import './routes/customer''
 |
 */
-
 import Route from '@ioc:Adonis/Core/Route'
+
+Route.get('/home', async (ctx) => {
+  const { default: WelcomeController } = await import(
+    'App/Controllers/Http/WelcomeController'
+    )
+  return new WelcomeController().index(ctx)
+})
 
 Route.get('/', 'WelcomeController.index')
 Route.get('/about', 'WelcomeController.about')
 
-Route.get('/home', 'WelcomeController.index').as('home')
+//Route.get('/home', 'WelcomeController.index').as('home')
+
+

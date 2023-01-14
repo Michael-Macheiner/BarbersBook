@@ -1,6 +1,11 @@
 {
   "assets/app.css": "http://localhost:8080/assets/app.css",
   "assets/app.js": "http://localhost:8080/assets/app.js",
+  "assets/images/primeicons.svg": "http://localhost:8080/assets/images/primeicons.e1441b13.svg",
+  "assets/fonts/primeicons.eot": "http://localhost:8080/assets/fonts/primeicons.d44157bd.eot",
+  "assets/fonts/primeicons.woff": "http://localhost:8080/assets/fonts/primeicons.10d31521.woff",
+  "assets/fonts/primeicons.ttf": "http://localhost:8080/assets/fonts/primeicons.ea535860.ttf",
+  "assets/fonts/primeicons.woff2": "http://localhost:8080/assets/fonts/primeicons.78172950.woff2",
   "assets/fonts/roboto-v20-latin-ext_latin-700.woff": "http://localhost:8080/assets/fonts/roboto-v20-latin-ext_latin-700.8aba6dc5.woff",
   "assets/fonts/roboto-v20-latin-ext_latin-500.woff": "http://localhost:8080/assets/fonts/roboto-v20-latin-ext_latin-500.e492ac63.woff",
   "assets/fonts/roboto-v20-latin-ext_latin-regular.woff": "http://localhost:8080/assets/fonts/roboto-v20-latin-ext_latin-regular.ae804dc0.woff",
