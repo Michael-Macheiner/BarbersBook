@@ -1,6 +1,6 @@
 export default class WelcomeController {
   public async index({ inertia }) {
-    return inertia.render('Home', {test: 222});
+    return inertia.render('Home', {test: 333});
   }
 
   public async about({inertia}) {

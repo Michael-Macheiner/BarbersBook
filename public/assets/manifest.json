@@ -1,6 +1,9 @@
 {
   "assets/app.css": "http://localhost:8080/assets/app.css",
   "assets/app.js": "http://localhost:8080/assets/app.js",
+  "assets/style.css": "http://localhost:8080/assets/style.css",
+  "assets/style.js": "http://localhost:8080/assets/style.js",
+  "assets/vendors-node_modules_chart_js_auto_auto_js.js": "http://localhost:8080/assets/vendors-node_modules_chart_js_auto_auto_js.js",
   "assets/images/primeicons.svg": "http://localhost:8080/assets/images/primeicons.e1441b13.svg",
   "assets/fonts/primeicons.eot": "http://localhost:8080/assets/fonts/primeicons.d44157bd.eot",
   "assets/fonts/primeicons.woff": "http://localhost:8080/assets/fonts/primeicons.10d31521.woff",

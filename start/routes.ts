@@ -29,6 +29,3 @@ Route.get('/home', async (ctx) => {
 Route.get('/', 'WelcomeController.index')
 Route.get('/about', 'WelcomeController.about')
 
-//Route.get('/home', 'WelcomeController.index').as('home')
-
-

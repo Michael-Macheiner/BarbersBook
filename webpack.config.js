@@ -46,6 +46,7 @@ Encore.setPublicPath('/assets')
 |
 */
 Encore.addEntry('app', './resources/js/app.js')
+Encore.addEntry('style', './resources/css/app.scss')
 
 /*
 |--------------------------------------------------------------------------
@@ -157,9 +158,8 @@ Encore.configureDevServerOptions((options) => {
 |
 */
 Encore.enableSassLoader()
-// Encore.enableLessLoader()
+//Encore.enableLessLoader()
 // Encore.enableStylusLoader()
-
 /*
 |--------------------------------------------------------------------------
 | CSS loaders
@@ -169,7 +169,7 @@ Encore.enableSassLoader()
 | PostCSS or CSS.
 |
 */
-// Encore.enablePostCssLoader()
+Encore.enablePostCssLoader()
 // Encore.configureCssLoader(() => {})
 
 /*
