@@ -11,6 +11,59 @@
   <title>adonis-inertia-boilerplate-vue</title>
 </head>
 <body>
+  <style>
+  .column {
+      display: flex;
+      flex-flow: column;
+    }
+  </style>
   @inertia()
+  <div>
+  
+  @if (nonVerifiedEmail)
+    <p>
+      Please verify your email by <a href="{{ route('verify.email') }}">clicking here</a>
+    </p>
+  @endif
+
+  <main>
+  @if (!auth.user)
+      <form style="text-align: center;" method="POST" action="{{ route('auth.register') }}">
+        <h2>Register Form</h2>
+        <input type="email" name="email" placeholder="email" />
+        <input type="password" name="password" placeholder="password" />
+        <button type="submit">
+          Register
+        </button>
+      </form>
+
+      <form style="text-align: center;" method="POST" action="{{ route('auth.login') }}">
+        <h2>Login Form</h2>
+        <input type="email" name="email" placeholder="email" />
+        <input type="password" name="password" placeholder="password" />
+        <button type="submit">
+          Login
+        </button>
+        <div>
+        <a href="{{ route('password.forgot') }}">
+          Forget your password?
+        </a>
+        </div>
+      </form>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    @else
+      @if (auth.user.isAdmin)
+        Admin User {{ auth.user.email }}
+      @else
+        Regular User {{ auth.user.email }}
+      @endif
+      <a href="{{ route('auth.logout') }}">Logout </a>
+    @endif
+  </main>
+  </div>
 </body>
 </html>
