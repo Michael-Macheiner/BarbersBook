@@ -45,8 +45,12 @@ const databaseConfig: DatabaseConfig = {
       migrations: {
         naturalSort: true,
       },
+      seeders: {
+        paths: ['./database/seeders/MainSeeders']
+      },
+
       healthCheck: false,
-      debug: false,
+      debug: true,
     },
 
   }
