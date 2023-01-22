@@ -6,10 +6,11 @@ import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import User from 'App/Models/User'
 import Token from 'App/Models/Token'
 
+
 export default class PasswordResetController {
 
-  public async forgot({ view }: HttpContextContract) {
-    return view.render('password.forgot')
+  public async forgot({ inertia }: HttpContextContract) {
+    return inertia.render('ResetPW');
   }
 
   public async send({ request, response, session }: HttpContextContract) {

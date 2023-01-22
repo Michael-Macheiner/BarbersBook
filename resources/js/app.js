@@ -28,6 +28,7 @@ createInertiaApp({
         badge: true,
         tooltip: true
       })
+
       .mount(el)
   }
 })

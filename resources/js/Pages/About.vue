@@ -18,6 +18,14 @@ const logoUrl = computed(() => {
 });
 </script>
 
+<script>
+import AuthLayout from "../Layouts/AuthLayout";
+
+export default {
+  layout: AuthLayout
+}
+</script>
+
 <template>
   <div class="surface-0 flex justify-content-center">
     <div id="home" class="landing-wrapper overflow-hidden">

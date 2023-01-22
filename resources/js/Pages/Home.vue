@@ -101,8 +101,6 @@ import Row from 'primevue/row';                     //optional for row
 import Menu from 'primevue/menu';
 import Button from 'primevue/button';
 
-const { isDarkTheme, contextPath } = useLayout();
-
 const products = ref(null);
 const lineData = reactive({
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -137,79 +135,8 @@ onMounted(() => {
 });
 
 const formatCurrency = (value) => {
-  return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+  return value.toLocaleString('eur', { style: 'currency', currency: 'EUR' });
 };
-const applyLightTheme = () => {
-  lineOptions.value = {
-    plugins: {
-      legend: {
-        labels: {
-          color: '#495057'
-        }
-      }
-    },
-    scales: {
-      x: {
-        ticks: {
-          color: '#495057'
-        },
-        grid: {
-          color: '#ebedef'
-        }
-      },
-      y: {
-        ticks: {
-          color: '#495057'
-        },
-        grid: {
-          color: '#ebedef'
-        }
-      }
-    }
-  };
-};
-
-const applyDarkTheme = () => {
-  lineOptions.value = {
-    plugins: {
-      legend: {
-        labels: {
-          color: '#ebedef'
-        }
-      }
-    },
-    scales: {
-      x: {
-        ticks: {
-          color: '#ebedef'
-        },
-        grid: {
-          color: 'rgba(160, 167, 181, .3)'
-        }
-      },
-      y: {
-        ticks: {
-          color: '#ebedef'
-        },
-        grid: {
-          color: 'rgba(160, 167, 181, .3)'
-        }
-      }
-    }
-  };
-};
-
-watch(
-  isDarkTheme,
-  (val) => {
-    if (val) {
-      applyDarkTheme();
-    } else {
-      applyLightTheme();
-    }
-  },
-  { immediate: true }
-);
 </script>
 
 <template>

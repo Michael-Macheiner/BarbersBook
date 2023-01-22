@@ -6,4 +6,12 @@ export default class WelcomeController {
   public async about({inertia}) {
     return inertia.render('About');
   }
+
+  public async login({ inertia }) {
+    return inertia.render('Login');
+  }
+
+  public async register({ inertia }) {
+    return inertia.render('Register');
+  }
 }

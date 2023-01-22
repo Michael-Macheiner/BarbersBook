@@ -3,11 +3,15 @@ import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import User from 'App/Models/User'
 
 export default class AuthController {
-    
+
   public async register({ request, response, auth }: HttpContextContract) {
     const userSchema = schema.create({
       email: schema.string([rules.email(), rules.trim()]),
       password: schema.string([rules.minLength(8)])
+    })
+
+    console.log({
+      body: request.body()
     })
 
     const data = await request.validate({ schema: userSchema })

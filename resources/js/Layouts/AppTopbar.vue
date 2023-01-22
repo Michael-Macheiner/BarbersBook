@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { useLayout } from './composables/layout';
+import { Link } from "@inertiajs/inertia-vue3";
 //import { useRouter } from 'vue-router';
 
 const { layoutConfig, onMenuToggle, contextPath } = useLayout();
@@ -62,10 +63,10 @@ const isOutsideClicked = (event) => {
 
 <template>
     <div class="layout-topbar">
-        <!--<router-link to="/" class="layout-topbar-logo">
-            <img :src="logoUrl" alt="logo" />
-            <span>SAKAI</span>
-        </router-link>-->
+        <Link href="/" class="layout-topbar-logo">
+            <img src="https://www.primefaces.org/primeblocks-vue/images/blocks/logos/hyper.svg" alt="logo" />
+            <span>Barber's Book</span>
+        </Link>
 
         <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
             <i class="pi pi-bars"></i>
@@ -80,14 +81,14 @@ const isOutsideClicked = (event) => {
                 <i class="pi pi-calendar"></i>
                 <span>Calendar</span>
             </button>
-            <button @click="onTopBarMenuButton()" class="p-link layout-topbar-button">
+            <Link href="/login-view" @click="onTopBarMenuButton()" class="p-link layout-topbar-button">
                 <i class="pi pi-user"></i>
                 <span>Profile</span>
-            </button>
-            <button @click="onSettingsClick()" class="p-link layout-topbar-button">
+            </Link>
+            <Link href="/register-view" @click="onSettingsClick()" class="p-link layout-topbar-button">
                 <i class="pi pi-cog"></i>
                 <span>Settings</span>
-            </button>
+            </Link>
         </div>
     </div>
 </template>
