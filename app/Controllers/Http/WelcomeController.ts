@@ -14,4 +14,8 @@ export default class WelcomeController {
   public async register({ inertia }) {
     return inertia.render('Register');
   }
+
+  public async resetPassword({ inertia }) {
+    return inertia.render('ResetPW');
+  }
 }

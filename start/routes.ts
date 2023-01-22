@@ -35,8 +35,12 @@ Route.get('/test', async ({ view }) => {
 
 Route.get('/', 'WelcomeController.index')
 Route.get('/about', 'WelcomeController.about')
+
 Route.get('/login-view', 'WelcomeController.login')
 Route.get('/register-view', 'WelcomeController.register')
+
+Route.get('/customers', 'CustomersController.index')
+Route.get('/calendar', 'CalendarController.index')
 
 //Auth routes
 Route.post('/auth/register', 'AuthController.register').as('auth.register')
@@ -49,7 +53,8 @@ Route.get('/verify/email/:token', 'VerifyEmailController.verify').as('verify.ema
 
 //Password reset routes
 Route.get('/password/forgot', 'PasswordResetController.forgot').as('password.forgot')
-  Route.get('ResetPW', 'PasswordResetController.forgot').as('ResetPW')
+//TODO: FIX
+Route.get('ResetPW', 'PasswordResetController.forgot').as('ResetPW')
 Route.post('/password/send', 'PasswordResetController.send').as('password.send')
 Route.get('/password/reset/:token', 'PasswordResetController.reset').as('password.reset')
 Route.post('/password/store', 'PasswordResetController.store').as('password.store')
