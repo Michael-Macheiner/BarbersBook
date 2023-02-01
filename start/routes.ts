@@ -47,6 +47,15 @@ Route.post('/auth/register', 'AuthController.register').as('auth.register')
 Route.post('/auth/login', 'AuthController.login').as('auth.login')
 Route.get('/auth/logout', 'AuthController.logout').as('auth.logout')
 
+//Routes for modifying data
+Route.group(() => {
+
+  Route.get('/index', 'UsersController.index').as('index')
+  Route.patch('/:id/role', 'UsersController.role').as('role')
+  Route.delete('/:id', 'UsersController.deleteUser').as('deleteUser')
+
+}).prefix('users').as('users').middleware(['auth', 'role:admin']) 
+
 //Verify email routes
 Route.get('/verify/email', 'VerifyEmailController.index').as('verify.email').middleware(['auth'])
 Route.get('/verify/email/:token', 'VerifyEmailController.verify').as('verify.email.verify')
