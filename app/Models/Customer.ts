@@ -9,7 +9,7 @@ export default class Customer extends BaseModel {
   public personID: number
 
   @column()
-  public customer_since: Date
+  public customer_since: Date | null
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

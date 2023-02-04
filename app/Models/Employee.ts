@@ -15,7 +15,7 @@ export default class Employee extends BaseModel {
   public personID: number
 
   @column()
-  public employee_since: Date
+  public employee_since: Date | null
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

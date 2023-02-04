@@ -6,8 +6,19 @@ export default class AuthController {
 
   public async register({ request, response, auth }: HttpContextContract) {
     const userSchema = schema.create({
+      firstname: schema.string({ trim: true }, [
+        rules.minLength(2),
+        rules.maxLength(50),
+        rules.alpha(),
+      ]),
+      surname: schema.string({ trim: true }, [
+        rules.minLength(2),
+        rules.maxLength(50),
+        rules.alpha(),
+      ]),
       email: schema.string([rules.email(), rules.trim()]),
-      password: schema.string([rules.minLength(8)])
+      password: schema.string([rules.minLength(8)]),
+      is_email_verified: schema.boolean(),
     })
 
     console.log({

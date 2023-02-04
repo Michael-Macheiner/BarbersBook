@@ -7,7 +7,7 @@ export default class extends BaseSeeder {
     const uniqueKey = 'id'
     await User.updateOrCreateMany(uniqueKey, [
       {
-        id: 2,
+        id: 1,
         firstname: 'Max',
         surname: 'Mustermann',
         email: 'maxmustermann@gmail.com',

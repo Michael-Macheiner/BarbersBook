@@ -10,8 +10,15 @@
       </div>
 
       <form @submit.prevent="form.post('/auth/register')">
+        <label for="firstname" class="block text-900 font-medium mb-2">Email</label>
+        <InputText id="firstname" class="w-full mb-3" v-model="form.firstname"/>
+
+        <label for="surname" class="block text-900 font-medium mb-2">Email</label>
+        <InputText id="surname" class="w-full mb-3" v-model="form.surname"/>
+
+
         <label for="email" class="block text-900 font-medium mb-2">Email</label>
-        <InputText id="email" type="email" class="w-full mb-3" v-model:value="form.email"/>
+        <InputText id="email" type="email" class="w-full mb-3" v-model:modelValue="form.email"/>
 
 
         <label for="password" class="block text-900 font-medium mb-2">Password</label>
@@ -20,12 +27,7 @@
         <label for="password2" class="block text-900 font-medium mb-2">Password wiederholen</label>
         <Password id="password2" v-model="form.passwordVerify" :feedback="false" toggle-mask class="mb-3"></Password>
 
-        <div class="flex align-items-center justify-content-between mb-6">
-        <Link href="/ResetPW" class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Password vergessen?</Link>
-
-        </div>
-        <Button v-if="form.password !== form.passwordVerify" :disabled="true" label="Registrieren" icon="pi pi-user" class="w-full"></Button>
-        <Button attr-type="submit" v-if="form.password === form.passwordVerify" :disabled="form.processing" label="Registrieren" icon="pi pi-user" class="w-full"></Button>
+        <Button type="submit" :disabled="form.processing" label="Registrieren" icon="pi pi-user" class="w-full"></Button>
       </form>
     </div>
   </div>
@@ -39,9 +41,12 @@ import { useForm } from '@inertiajs/inertia-vue3';
 import { Link } from '@inertiajs/inertia-vue3';
 
 const form = useForm({
-  email: null,
-  password: null,
-  remember: false,
+  firstname: '',
+  surname: '',
+  email: '',
+  password: '',
+  is_email_verified: false,
+
 })
 </script>
 

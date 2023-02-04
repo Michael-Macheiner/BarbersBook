@@ -9,7 +9,8 @@
         <Link href="/register-view" class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Jetzt registrieren!</Link>
       </div>
 
-      <form @submit.prevent="form.post('/auth/logina')">
+      <form @submit.prevent="form.post('/auth/login')">
+
         <label for="email" class="block text-900 font-medium mb-2">Email</label>
         <InputText id="email" type="email" class="w-full mb-3" v-model:modelValue="form.email"/>
 
