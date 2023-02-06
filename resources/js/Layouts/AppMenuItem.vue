@@ -1,10 +1,7 @@
 <script setup>
 import { ref, onBeforeMount, watch } from 'vue';
-//import { useRoute } from 'vue-router';
 import { useLayout } from './composables/layout';
-
-//const route = useRoute();
-
+import { Link } from "@inertiajs/inertia-vue3";
 const { layoutConfig, layoutState, setActiveMenuItem, onMenuToggle } = useLayout();
 
 const props = defineProps({
@@ -64,9 +61,7 @@ const itemClick = (event, item) => {
   setActiveMenuItem(foundItemKey);
 };
 
-const checkActiveRoute = (item) => {
-  return route.path === item.to;
-};
+
 </script>
 
 <template>

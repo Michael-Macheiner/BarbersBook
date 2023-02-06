@@ -1,14 +1,12 @@
 <script setup>
+import ConfirmPopup from 'primevue/confirmpopup';
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { useLayout } from './composables/layout';
 import { Link } from "@inertiajs/inertia-vue3";
-//import { useRouter } from 'vue-router';
-
-const { layoutConfig, onMenuToggle, contextPath } = useLayout();
 
 const outsideClickListener = ref(null);
 const topbarMenuActive = ref(false);
-//const router = useRouter();
+
 
 onMounted(() => {
     bindOutsideClickListener();
@@ -85,8 +83,8 @@ const isOutsideClicked = (event) => {
                 <i class="pi pi-user"></i>
                 <span>Profile</span>
             </Link>
-            <Link href="/register-view" @click="onSettingsClick()" class="p-link layout-topbar-button">
-                <i class="pi pi-cog"></i>
+            <Link href="auth/logout" @click="onSettingsClick" class="p-link layout-topbar-button">
+                <i class="pi pi-sign-out"></i>
                 <span>Settings</span>
             </Link>
         </div>
