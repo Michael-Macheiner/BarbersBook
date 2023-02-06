@@ -1,11 +1,12 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { schema, rules } from '@ioc:Adonis/Core/Validator'
+//import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import User from 'App/Models/User'
+import AuthValidator from "App/Validators/AuthValidator";
 
 export default class AuthController {
 
   public async register({ request, response, auth }: HttpContextContract) {
-    const userSchema = schema.create({
+    /*const userSchema = schema.create({
       firstname: schema.string({ trim: true }, [
         rules.minLength(2),
         rules.maxLength(50),
@@ -19,13 +20,13 @@ export default class AuthController {
       email: schema.string([rules.email(), rules.trim()]),
       password: schema.string([rules.minLength(8)]),
       is_email_verified: schema.boolean(),
-    })
+    })*/
 
     console.log({
       body: request.body()
     })
 
-    const data = await request.validate({ schema: userSchema })
+    const data = await request.validate(AuthValidator)
     const user = await User.create(data)
 
     await auth.login(user)

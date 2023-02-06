@@ -1,6 +1,6 @@
 <template>
   <div class="flex align-items-center justify-content-center mt-8">
-    <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+    <div class="surface-card p-4 shadow-4 border-round w-full lg:w-4">
 
       <div class="text-center mb-5">
         <img src="https://www.primefaces.org/primeblocks-vue/images/blocks/logos/hyper.svg" alt="Image" height="50" class="mb-3">
