@@ -50,7 +50,7 @@ Route.get('/auth/logout', 'AuthController.logout').as('auth.logout')
 //Routes for modifying data
 Route.group(() => {
 
-  Route.get('/index', 'UsersController.index').as('index')
+  Route.get('/manage', 'UsersController.manage').as('manage')
   Route.patch('/:id/role', 'UsersController.role').as('role')
   Route.delete('/:id', 'UsersController.deleteUser').as('deleteUser')
 

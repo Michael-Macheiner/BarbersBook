@@ -9,8 +9,8 @@ import Token from 'App/Models/Token'
 
 export default class PasswordResetController {
 
-  public async forgot({ inertia }: HttpContextContract) {
-    return inertia.render('ResetPW');
+  public async forgot({ view }: HttpContextContract) {
+    return view.render('password.forgot');
   }
 
   public async send({ request, response, session }: HttpContextContract) {

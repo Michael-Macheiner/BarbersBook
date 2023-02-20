@@ -17,7 +17,7 @@
         <label for="password" class="block text-900 font-medium mb-2">Password</label>
         <InputText id="password" type="password" class="w-full mb-3" v-model:modelValue="form.password"/>
 
-        <Link href="/ResetPW" class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Password vergessen?</Link>
+        <a href="/password/forgot" class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Password vergessen?</a>
 
         <Button type="submit" :disabled="form.processing" label="Anmnelden" icon="pi pi-user" class="w-full mt-3"></Button>
       </form>

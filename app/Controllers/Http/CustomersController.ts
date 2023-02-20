@@ -6,14 +6,14 @@ import Roles from 'App/Enums/Roles'
 
 
 export default class CustomersController {
-  public async index({ inertia }) {
+  public async manage({ view }: HttpContextContract) {
     const users = await User.query()
       .orderBy('email')
 
     const roles = await Role.query()
       .orderBy('name')
 
-    return inertia.render('Customers', { users, roles });
+    return view.render('users/manage', { users, roles })
   }
 
   public async role({ request, response, params, auth }: HttpContextContract) {
