@@ -40,7 +40,9 @@ onBeforeMount(() => {
         customer1.value.forEach((customer) => (customer.date = new Date(customer.date)));
     });
     customerService.getCustomersLarge().then((data) => (customer2.value = data));
-    customerService.getCustomersMedium().then((data) => (customer3.value = data));
+    customerService.getCustomersMedium().then((data) => {customer3.value = data; console.log(customer3.value)});
+
+
     loading2.value = false;
 
     initFilters1();
@@ -76,27 +78,31 @@ const formatDate = (value) => {
   });
 };
 
-const calculateCustomerTotal = (name) => {
-    let total = 0;
-    if (customer3.value) {
-        for (let customer of customer3.value) {
-            if (customer.representative.name === name) {
-                total++;
-            }
-        }
-    }
 
-    return total;
-};
 </script>
 
 <script>
 export default {
   data() {
     return {
-      filterModel:{value: null}
+      filterModel:{value: null},
+      userArr: {
+        data: [
+
+        ]
+      },
     }
-  }
+  },
+  props: {
+    users: String
+  },
+  mounted() {
+    console.log(Object.values(this.users)[0]);
+    for(let i = 0; i < this.users.length; i++) {
+      this.userArr.data.push(Object.values( this.users)[i]);
+    }
+    console.log(this.userArr.data);
+  },
 }
 
 </script>
@@ -107,50 +113,46 @@ export default {
             <div class="card">
                 <h5>Subheader Grouping</h5>
                 <DataTable
-                  :value="customer3"
+                  :value="userArr.data"
                   rowGroupMode="subheader"
-                  groupRowsBy="representative.name"
+                  :groupRowsBy="userArr.createdAt"
                   sortMode="single"
-                  sortField="representative.name"
                   :sortOrder="1"
                   scrollable
                   scrollHeight="60rem"
-
                   :paginator="true"
                   class="p-datatable-gridlines"
                   :rows="10"
                   :rowHover="true"
-                  v-model:filters="filters1"
-                  filterDisplay="menu"
-                  :loading="loading1"
-                  :filters="filters1"
                   responsiveLayout="scroll"
-                  :globalFilterFields="['name', 'company', 'representative.name', 'date']"
                 >
-                    <Column field="representative.name" header="Representative"></Column>
-                    <Column field="name" header="Name" style="min-width: 200px">
+                    <Column field="surname" header="Name" style="min-width: 200px">
                       <template #body="{ data }">
-                        {{ data.name }}
-                      </template>
-                      <template #filter="{ filterModel }">
-                        <InputText type="text" v-model="filterModel.value" class="p-column-filter" placeholder="Search by name" />
+                        {{ data.firstname }} {{ data.surname }}
                       </template>
                     </Column>
-                    <Column field="company" header="Company" style="min-width: 200px"></Column>
-                    <Column field="date" header="Date" style="min-width: 200px">
-                      <template #body="{data}">
-                        {{formatDate(data.date)}}
-                      </template>
-                      <template #filter="{filterModel}">
-                        <Calendar v-model="filterModel.value" date-format="mm/dd/yy" placeholder="mm/dd/yyyy"></Calendar>
-                      </template>
-                    </Column>
-                    <template #groupheader="slotProps">
-                        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" width="32" style="vertical-align: middle" />
-                        <span class="image-text font-bold ml-2">{{ slotProps.data.representative.name }}</span>
+                  <Column field="email" header="E-Mail" style="min-width: 200px">
+                    <template #body="{data}">
+                      {{data.email}}
                     </template>
+                  </Column>
+                  <Column field="role_id" header="Role" style="min-width: 200px">
+                    <template #body="{data}">
+                      <span v-if="data.role_id === 1">
+                        Admin
+                      </span>
+                      <span v-else>
+                        Customer
+                      </span>
+                    </template>
+                  </Column>
+                  <Column field="created_at" header="Created At" style="min-width: 200px">
+                    <template #body="{data}">
+                      {{formatDate(data.created_at)}}
+                    </template>
+                  </Column>
                     <template #groupfooter="slotProps">
-                        <td style="text-align: right" class="text-bold pr-6">Total Customers: {{ calculateCustomerTotal(slotProps.data.representative.name) }}</td>
+                        <td style="text-align: right" class="text-bold pr-6">Total Customers: {{ userArr.data.length }}</td>
                     </template>
                 </DataTable>
             </div>

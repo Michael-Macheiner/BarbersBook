@@ -5,7 +5,15 @@ import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import Roles from 'App/Enums/Roles'
 
 
+
 export default class CustomersController {
+  public async index({ inertia }: HttpContextContract) {
+    const users = await User.query()
+    console.log(users)
+    return inertia.render('Customers', { users });
+  }
+
+
   public async manage({ view }: HttpContextContract) {
     const users = await User.query()
       .orderBy('email')
