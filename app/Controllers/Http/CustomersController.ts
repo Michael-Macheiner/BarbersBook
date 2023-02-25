@@ -50,4 +50,29 @@ export default class CustomersController {
       ? response.redirect().toPath('/')
       : response.redirect().back()
   }
+
+  public async createUser({ inertia, request }: HttpContextContract) {
+
+    const userSchema = schema.create({
+      firstname: schema.string({ trim: true }, [
+        rules.minLength(2),
+        rules.maxLength(50),
+
+      ]),
+      surname: schema.string({ trim: true }, [
+        rules.minLength(2),
+        rules.maxLength(50),
+      ]),
+      email: schema.string([rules.email(), rules.trim()]),
+      password: schema.string([rules.minLength(8)]),
+      is_email_verified: schema.boolean(),
+    })
+
+    //const data = await request.validate({ schema: userSchema })
+    //const user = await User.create(data)
+
+    const users = await User.query()
+
+    return inertia.render('Customers', { users });
+  }
 }

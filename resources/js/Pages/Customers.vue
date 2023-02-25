@@ -1,70 +1,11 @@
 <script setup>
-import { FilterMatchMode, FilterOperator } from 'primevue/api';
-import CustomerService from '../services/CustomerService';
-import { ref, onBeforeMount } from 'vue';
 import { useLayout } from '../Layouts/composables/layout';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import InputText from 'primevue/inputtext';
-import Calendar from 'primevue/calendar';
+import Button from 'primevue/button';
 
 const { contextPath } = useLayout();
-
-const customer1 = ref(null);
-const customer2 = ref(null);
-const customer3 = ref(null);
-const filters1 = ref(null);
-const loading1 = ref(null);
-const loading2 = ref(null);
-const idFrozen = ref(false);
-const expandedRows = ref([]);
-const representatives = ref([
-    { name: 'Amy Elsner', image: 'amyelsner.png' },
-    { name: 'Anna Fali', image: 'annafali.png' },
-    { name: 'Asiya Javayant', image: 'asiyajavayant.png' },
-    { name: 'Bernardo Dominic', image: 'bernardodominic.png' },
-    { name: 'Elwin Sharvill', image: 'elwinsharvill.png' },
-    { name: 'Ioni Bowcher', image: 'ionibowcher.png' },
-    { name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png' },
-    { name: 'Onyama Limba', image: 'onyamalimba.png' },
-    { name: 'Stephen Shaw', image: 'stephenshaw.png' },
-    { name: 'XuXue Feng', image: 'xuxuefeng.png' }
-]);
-
-const customerService = new CustomerService();
-
-onBeforeMount(() => {
-    customerService.getCustomersLarge().then((data) => {
-        customer1.value = data;
-        loading1.value = false;
-        customer1.value.forEach((customer) => (customer.date = new Date(customer.date)));
-    });
-    customerService.getCustomersLarge().then((data) => (customer2.value = data));
-    customerService.getCustomersMedium().then((data) => {customer3.value = data; console.log(customer3.value)});
-
-
-    loading2.value = false;
-
-    initFilters1();
-});
-
-const initFilters1 = () => {
-    filters1.value = {
-        global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        name: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
-        company: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
-        representative: { value: null, matchMode: FilterMatchMode.IN },
-        date: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }] },
-        balance: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
-        status: { operator: FilterOperator.OR, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
-        activity: { value: [0, 50], matchMode: FilterMatchMode.BETWEEN },
-        verified: { value: null, matchMode: FilterMatchMode.EQUALS }
-    };
-};
-
-const clearFilter1 = () => {
-    initFilters1();
-};
 
 const formatCurrency = (value) => {
     return value.toLocaleString('eu', { style: 'currency', currency: 'EUR' });
@@ -77,11 +18,10 @@ const formatDate = (value) => {
     year: 'numeric'
   });
 };
-
-
 </script>
 
 <script>
+
 export default {
   data() {
     return {
@@ -101,7 +41,20 @@ export default {
     for(let i = 0; i < this.users.length; i++) {
       this.userArr.data.push(Object.values( this.users)[i]);
     }
-    console.log(this.userArr.data);
+  },
+  methods: {
+    onDeleteClick(id, role_id) {
+      console.log(id);
+      if(role_id !== 2) {
+        this.$inertia.delete('/users/' + id);
+      }
+
+    },
+    onCreateClick() {
+      const tempUser = this.userArr.data[0];
+      tempUser.id = 2;
+      this.$inertia.post('/users/create', {tempUser});
+    },
   },
 }
 
@@ -115,7 +68,7 @@ export default {
                 <DataTable
                   :value="userArr.data"
                   rowGroupMode="subheader"
-                  :groupRowsBy="userArr.createdAt"
+                  :groupRowsBy="userArr.created_at"
                   sortMode="single"
                   :sortOrder="1"
                   scrollable
@@ -125,10 +78,15 @@ export default {
                   :rows="10"
                   :rowHover="true"
                   responsiveLayout="scroll"
+                  :filter="filters1"
+                  :globalFilterFields="['surname','email','role_id','created_at']"
                 >
                     <Column field="surname" header="Name" style="min-width: 200px">
                       <template #body="{ data }">
                         {{ data.firstname }} {{ data.surname }}
+                      </template>
+                      <template #filter="{filterModel}">
+                        <InputText type="text" v-model="filterModel.value" class="p-column-filter" placeholder="Search by surname"/>
                       </template>
                     </Column>
                   <Column field="email" header="E-Mail" style="min-width: 200px">
@@ -138,7 +96,7 @@ export default {
                   </Column>
                   <Column field="role_id" header="Role" style="min-width: 200px">
                     <template #body="{data}">
-                      <span v-if="data.role_id === 1">
+                      <span v-if="data.role_id === 2">
                         Admin
                       </span>
                       <span v-else>
@@ -151,8 +109,18 @@ export default {
                       {{formatDate(data.created_at)}}
                     </template>
                   </Column>
+                  <Column header="Actions" style="min-width: 150px">
+                    <template #body="{data}">
+                      <Button style="margin-right: 10px" icon="pi pi-trash" class="p-button-rounded p-button-danger" @click="onDeleteClick(data.id, data.role_id)"></Button>
+                      <Button icon="pi pi-pencil" class="p-button-rounded p-button-warning"></Button>
+                    </template>
+                  </Column>
                     <template #groupfooter="slotProps">
-                        <td style="text-align: right" class="text-bold pr-6">Total Customers: {{ userArr.data.length }}</td>
+                        <td style="text-align: right" class="text-bold pr-6">
+                          Total Customers: {{ userArr.data.length }}
+                          <Button style="margin-left:auto" icon="pi pi-plus" class="p-button-rounded p-button-success" @click="onCreateClick()"></Button>
+                        </td>
+
                     </template>
                 </DataTable>
             </div>

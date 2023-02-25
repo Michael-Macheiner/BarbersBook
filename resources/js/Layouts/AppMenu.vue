@@ -3,73 +3,49 @@ import { ref } from 'vue';
 import { Link } from "@inertiajs/inertia-vue3";
 import AppMenuItem from './AppMenuItem.vue';
 
-const model = ref([
-    {
-      label: 'Landing',
+const model = [
+  {
+    label: 'Landing Page',
+    icon: 'pi pi-fw pi-globe',
+    to: '/about',
+    items: []
+  },
+  {
+      label: 'Dashboard',
       icon: 'pi pi-fw pi-globe',
-      to: '/landing',
+      to: '/',
       items: []
-    },
-    {
-      label: 'Crud',
+  },
+  {
+      label: 'Customers',
       icon: 'pi pi-fw pi-pencil',
-      to: '/pages/crud'
-    },
-    {
-      label: 'Timeline',
+      to: '/customers',
+  },
+  {
+      label: 'Calendar',
       icon: 'pi pi-fw pi-calendar',
       to: '/pages/timeline'
-    },
-    {
-      label: 'Not Found',
-      icon: 'pi pi-fw pi-exclamation-circle',
-      to: '/pages/notfound'
-    },
-    {
-      label: 'Empty',
-      icon: 'pi pi-fw pi-circle-off',
-      to: '/pages/empty'
-    },
-    {
-      label: 'UI Components',
-      items: [
-        { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/uikit/formlayout' },
-        { label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/uikit/input' },
-        { label: 'Float Label', icon: 'pi pi-fw pi-bookmark', to: '/uikit/floatlabel' },
-        { label: 'Invalid State', icon: 'pi pi-fw pi-exclamation-circle', to: '/uikit/invalidstate' },
-        { label: 'Button', icon: 'pi pi-fw pi-mobile', to: '/uikit/button', class: 'rotated-icon' },
-        { label: 'Table', icon: 'pi pi-fw pi-table', to: '/uikit/table' },
-        { label: 'List', icon: 'pi pi-fw pi-list', to: '/uikit/list' },
-        { label: 'Tree', icon: 'pi pi-fw pi-share-alt', to: '/uikit/tree' },
-        { label: 'Panel', icon: 'pi pi-fw pi-tablet', to: '/uikit/panel' },
-        { label: 'Overlay', icon: 'pi pi-fw pi-clone', to: '/uikit/overlay' },
-        { label: 'Media', icon: 'pi pi-fw pi-image', to: '/uikit/media' },
-        { label: 'Menu', icon: 'pi pi-fw pi-bars', to: '/uikit/menu' },
-        { label: 'Message', icon: 'pi pi-fw pi-comment', to: '/uikit/message' },
-        { label: 'File', icon: 'pi pi-fw pi-file', to: '/uikit/file' },
-        { label: 'Chart', icon: 'pi pi-fw pi-chart-bar', to: '/uikit/charts' },
-        { label: 'Misc', icon: 'pi pi-fw pi-circle', to: '/uikit/misc' }
-      ]
-    },
-  ]);
+  },
+];
 </script>
 
 <template>
   <ul class="layout-menu">
-    <!--<template v-for="(item, i) in model" :key="item">
-      <app-menu-item v-if="!item.separator" :item="item" :index="i"></app-menu-item>
-      <li v-if="item.separator" class="menu-separator"></li>
-    </template>-->
-    <li>
-      <Link class="">A</link>
-    </li>
-    <li>
-      <Link>B</Link>
-    </li>
-    <li>
-      <Link>C</Link>
-    </li>
+      <li style="padding: 20px; font-size: 16px"><Link href="/about" class="layout-menuitem-root-text"><span style="margin-right: 10px" class="pi pi-fw pi-globe"></span>Landing Page</Link></li>
+      <li class="menu-separator"></li>
+      <li style="padding: 20px; font-size: 16px"><Link href="/" class="layout-menuitem-root-text"><span style="margin-right: 10px" class="pi pi-fw pi-home"></span>Dashboard</Link></li>
+      <li class="menu-separator"></li>
+      <li style="padding: 20px; font-size: 16px"><Link href="/customers" class="layout-menuitem-root-text"><span style="margin-right: 10px" class="pi pi-fw pi-pencil"></span>Customers</Link></li>
+      <li class="menu-separator"></li>
+      <li style="padding: 20px; font-size: 16px"><Link href="/calendar" class="layout-menuitem-root-text"><span style="margin-right: 10px" class="pi pi-fw pi-calendar"></span>Calendar</Link></li>
+      <li class="menu-separator"></li>
   </ul>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.layout-menu {
+  li > a {
+    color: #000;
+  }
+}
+</style>

@@ -50,11 +50,12 @@ Route.get('/auth/logout', 'AuthController.logout').as('auth.logout')
 //Routes for modifying data
 Route.group(() => {
 
-  Route.get('/manage', 'UsersController.manage').as('manage')
-  Route.patch('/:id/role', 'UsersController.role').as('role')
-  Route.delete('/:id', 'UsersController.deleteUser').as('deleteUser')
+  Route.get('/manage', 'CustomersController.manage').as('manage')
+  Route.patch('/:id/role', 'CustomersController.role').as('role')
+  Route.delete('/:id', 'CustomersController.deleteUser').as('deleteUser')
+  Route.post('/create', 'CustomersController.createUser').as('createUser')
 
-}).prefix('users').as('users').middleware(['auth', 'role:admin']) 
+}).prefix('users').as('users').middleware(['auth', 'role:admin'])
 
 //Verify email routes
 Route.get('/verify/email', 'VerifyEmailController.index').as('verify.email').middleware(['auth'])
